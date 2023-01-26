@@ -3,6 +3,7 @@ import LoadingContext from "../../configs/contexts/LoadingContext";
 import { useState, useContext } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
+import completeLogo from "../../assets/completeLogo.png"
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -19,8 +20,7 @@ export default function SignIn() {
   return (
     <Wrapper>
       <Logo>
-        <h1>ORG.</h1>
-        <h2>Organize Yourself</h2>
+        <img src={completeLogo} alt={"Logo"}/>
       </Logo>
       <FormContainer>
         <form onSubmit={handleSignIn}>
@@ -81,7 +81,7 @@ const Logo = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 150px 0 80px 0;
+  margin: 50px 0 10px 0;
   h1 {
     font-family: "Russo One", sans-serif;
     color: #ffffff;
@@ -106,7 +106,7 @@ const FormContainer = styled.div`
     border: none;
     font-size: 15px;
     width: 325px;
-    height: 40px;
+    height: 50px;
     border-radius: 5px;
     color: #000000;
     background-color: #ffffff;

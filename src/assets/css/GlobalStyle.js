@@ -17,7 +17,7 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	font-size: 1rem;
 	font: inherit;
 	vertical-align: baseline;
 	text-decoration: none;
@@ -53,6 +53,7 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: 'Roboto', sans-serif;
+	overflow-x: hidden;
 }
 `;
 export default GlobalStyle;
