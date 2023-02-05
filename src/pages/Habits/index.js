@@ -46,15 +46,21 @@ export default function HabitsPage() {
           />
         </div>
       </TitleAndAddHabitContainer>
-      <CreateHabitBox visible={create} />
+      <CreateHabitBox visible={create} setCreate={setCreate} getDataFromApi={getDataFromApi}/>
       <Container>
-        {habits.map((habit, i) => (
-          <HabitBox
-            key={`${habit.name}i`}
-            name={habit.name}
-            selectedDays={[1, 3, 4]}
-          />
-        ))}
+        {habits.length === 0 ? (
+          <h2>You have no registered habits</h2>
+        ) : (
+          <>
+            {habits.map((habit, i) => (
+              <HabitBox
+                key={`${habit.name}i`}
+                name={habit.name}
+                selectedDays={habit.days}
+              />
+            ))}
+          </>
+        )}
       </Container>
     </Wrapper>
   );
@@ -70,6 +76,7 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   width: 100vw;
   height: 100vh;
+  gap: 1rem;
 `;
 
 const TitleAndAddHabitContainer = styled.div`
@@ -95,6 +102,7 @@ const Container = styled.div`
   gap: 1rem;
   width: 24rem;
   padding: 1rem 0;
+  min-height: 10rem;
   > h2 {
     font-size: 1.5rem;
     font-weight: 700;

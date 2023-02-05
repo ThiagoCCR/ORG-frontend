@@ -6,16 +6,18 @@ export default function CreateHabitBoxDay({ selectedDays, setDays, day }) {
 
   function handleSelection() {
     if (selectedDays.includes(day)) {
-      const filteredArray = selectedDays.filter((curr) => curr !== day);
+      const filteredArray = selectedDays.filter(
+        (curr) => curr.number !== day.number
+      );
       setDays(filteredArray);
     }
-    setDays([...selectedDays, day]);
+    setDays([...selectedDays, day.number]);
     setClicked(!clicked);
   }
 
   return (
     <Wrapper selected={clicked} onClick={handleSelection}>
-      <p>{day}</p>
+      <p>{day.simbol}</p>
     </Wrapper>
   );
 }

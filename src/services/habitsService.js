@@ -39,3 +39,14 @@ export async function uncheckHabit(body, token) {
 
   return response.data;
 }
+
+
+export async function createHabit(token, body) {
+  const response = await api.post("/habits", body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+});
+
+  return response.data;
+}

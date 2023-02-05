@@ -23,7 +23,7 @@ export default function HabitBox({ name, selectedDays }) {
       <DaysContainer>
         {days.map((day, i) => (
           <Day key={day + i} name={i} selected={selectedDays.includes(i)}>
-            <p>{day}</p>
+            <p>{day.simbol}</p>
           </Day>
         ))}
       </DaysContainer>
