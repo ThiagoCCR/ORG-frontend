@@ -18,7 +18,7 @@ export default function SelectionBox() {
       <CalendarBox onClick={() => navigate("/calendar")}>
         <p>Calendar</p>
       </CalendarBox>
-      <TodayButton></TodayButton>
+      <TodayButton onClick={() => navigate("/today")}>TODAY</TodayButton>
     </Wrapper>
   );
 }
@@ -95,4 +95,7 @@ const TodayButton = styled.div`
   top: 50%-4rem;
   right: 50%-4rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -4,9 +4,11 @@ import CalendarIcon from "../../components/Icons/CalendarIcon.js";
 import Carousel from "./Carousel.js";
 import SelectionBox from "./SelectionBox.js";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 export default function Home() {
   const navigate = useNavigate();
+  const Now = dayjs();
 
   return (
     <Wrapper>
@@ -23,8 +25,10 @@ export default function Home() {
         </CalendarButton>
         <Carousel />
       </CarouselContainer>
-      <h2>QUARTA, 25 DE JANEIRO</h2>
-      <SelectionBox/>
+      <h2>
+        {Now.format("dddd").toUpperCase()}, {Now.format("DD/MM")}
+      </h2>
+      <SelectionBox />
     </Wrapper>
   );
 }

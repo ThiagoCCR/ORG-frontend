@@ -5,6 +5,8 @@ import Home from "../pages/Home/index.js";
 import { useState } from "react";
 import Signup from "../pages/SignUp/SignUp.js";
 import LoadingContext from "../configs/contexts/LoadingContext.js";
+import Today from "../pages/Today/Index.js";
+import HabitsPage from "../pages/Habits/index.js";
 
 function App() {
   const [isLoading, setisLoading] = useState(false);
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/today" element={<Today />} />
+          <Route path="/habits" element={<HabitsPage />} />
         </Routes>
       </BrowserRouter>
     </LoadingContext.Provider>

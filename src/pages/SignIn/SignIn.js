@@ -2,25 +2,42 @@ import styled from "styled-components";
 import LoadingContext from "../../configs/contexts/LoadingContext";
 import { useState, useContext } from "react";
 import { ThreeDots } from "react-loader-spinner";
-import { Link, useNavigate } from "react-router-dom";
-import completeLogo from "../../assets/completeLogo.png"
+import { Navigate, Link, useNavigate } from "react-router-dom";
+import completeLogo from "../../assets/completeLogo.png";
+import useSignIn from "../../hooks/api/useSignIn";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isLoading, setisLoading } = useContext(LoadingContext);
+  const auth = JSON.parse(localStorage.getItem("org"));
+  const { signIn } = useSignIn();
   const navigate = useNavigate();
 
-  function handleSignIn(e) {
+  async function handleSignIn(e) {
     e.preventDefault();
-    //JWT
-    navigate("/home");
+    setisLoading(true);
+    //add toast lib -- remove alert
+    try {
+      const userData = await signIn(email, password);
+      const infoJSON = JSON.stringify({ token: userData.token });
+      localStorage.setItem("org", infoJSON);
+      navigate("/home");
+      setisLoading(false);
+    } catch (err) {
+      alert("Não foi possível fazer o login!");
+      setisLoading(false);
+    }
+  }
+
+  if (auth) {
+    return <Navigate to="/home" />;
   }
 
   return (
     <Wrapper>
       <Logo>
-        <img src={completeLogo} alt={"Logo"}/>
+        <img src={completeLogo} alt={"Logo"} />
       </Logo>
       <FormContainer>
         <form onSubmit={handleSignIn}>
@@ -42,7 +59,7 @@ export default function SignIn() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">
+          <button type="submit" disabled={isLoading}>
             {isLoading ? (
               <div>
                 <ThreeDots color="#ffffff" />
@@ -68,7 +85,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  a{
+  a {
     text-decoration: none;
     margin-top: 10px;
     font-size: 15px;
@@ -114,13 +131,13 @@ const FormContainer = styled.div`
     padding-left: 15px;
   }
   button {
-      text-align: center;
-      width: 200px;
-      height: 35px;
-      border-radius: 5px;
-      border: none;
-      background-color: #ffffff;
-      font-size: 20px;
-      cursor: pointer;
-    }
+    text-align: center;
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+  }
 `;

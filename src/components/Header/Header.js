@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <>
       <Wrapper>
-        <Logo>
+        <Logo onClick={() => navigate("/home")}>
           <img src={smallLogo} alt={"MenuLogo"} />
         </Logo>
         <ProfilePic onClick={() => navigate("/profile")}>
@@ -77,7 +77,7 @@ const Logo = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  >img {
+  > img {
     width: 100px;
     height: 100px;
   }
@@ -87,7 +87,7 @@ const ProfilePic = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin: 4rem 1rem 0 0;
+  margin: 4rem 0 0 0;
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -100,9 +100,10 @@ const Menu = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100px;
+  height: 100px;
   align-items: center;
   cursor: pointer;
-  margin-right: 5vw;
 `;
 
 const Sidebar = styled.div`
